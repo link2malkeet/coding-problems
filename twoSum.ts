@@ -9,6 +9,7 @@
 // Input: nums = [2,7,11,15], target = 9
 // Output: [0,1]
 // Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+
 // Sol 1
 function twoSum(nums: number[], target: number) {
     const map: Record<number, number> = {};
@@ -22,11 +23,24 @@ function twoSum(nums: number[], target: number) {
     }
 }
 
-console.log(twoSum([2, 7, 11, 15], 9));
-
-
 // Sol 2
-function twoSum2(nums: number[], target: number) {
+function twoSum2(arr: number[], target: number) {
+    const map = {};
+    for (let index = 0; index < arr.length; index++) {
+        const diff = target - arr[index];
+        if(map[diff] === undefined) {
+            map[arr[index]] = index;
+        } else {
+            return [map[diff], index]
+        }
+    }   
+}
+
+console.log(twoSum2([2, 7, 11, 15], 9));
+
+
+// Sol 3
+function twoSum3(nums: number[], target: number) {
     for (let i = 0; i < nums.length - 1; i++) {
         for (let j = 1; j < nums.length; j++) {
             if (nums[j] + nums[i] === target) {
@@ -36,6 +50,6 @@ function twoSum2(nums: number[], target: number) {
     }
 }
 
-console.log(twoSum2([2, 7, 11, 15], 9));
+console.log(twoSum3([2, 7, 11, 15], 9));
 
 // The time complexity of our solution is O(n).
